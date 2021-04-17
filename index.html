@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Смарт-Экспресс — официальный сайт</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(function(){
+        $('.open-popup').on('click', function(){
+            $('.popup-container').css('display', 'flex');
+        });
+
+        $('.close-popup').on('click', function(){
+            $('.popup-container').css('display', 'none');
+            return false;
+        });
+
+        $('.send-order').on('click', function(){
+            let request = {
+                'name': $('.popup input[type="text"]').val(),
+                'email': $('.popup input[type="email"]').val()
+            }
+            $.post('api.php', request, function(response){
+                if(response == '1') {
+                    $('.popup-container').css('display', 'none');
+                } else {
+                    alert("Что-то пошло не так :(");
+                }
+            });
+            return false;
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="popup-container">
+        <div class="popup">
+            <a href="#" class="close-popup"></a>
+            <h3>Оставьте заявку</h3>
+            <input type="text" name="name" placeholder="Ваше имя">
+            <input type="email" name="email" placeholder="Ваш e-mail">
+            <button class="light-button send-order">Отправить</button>
+        </div>
+        </div>
+    <header class="fixed-container">
+        <nav>
+            <a href="">Услуги</a>
+            <a href="">Портфолио</a>
+            <a href="">Стоимость</a>
+        </nav>
+        <div class="phone-container">
+            <a href="">+7 495 999-99-99</a>
+            <button class="light-button open-popup">Заказать звонок</button>
+        </div>
+    </header>
+    <section class="fixed-container img">
+        <div class="main-info">
+            <h1>Редин Никита</h1>
+    <p>Студент</p>
+    <button class="dark-button">Узнать больше</button>
+</div>
+<div class="main-img"></div>
+ </section>
+     
+ <section class="fixed-container services-section">
+    <h2>Что я делаю</h2>
+    <div class="services-container">
+        <div class="service-1">Вёрстка лендинг-страниц<br>и сайтов любой сложности</div>
+        <div class="service-2">Адаптивная вёрстка под<br>все браузеры и устройства</div>
+        <div class="service-3">Frontend-разработка<br>и программирование</div>
+        <div class="service-4">Исправление и доработка<br>существующей вёрстки</div>
+    </div>
+    <button class="light-button  open-popup">Узнать стоимость</button>
+</section>
+<section class="fixed-container example-section">
+    <h2>Примеры работ</h2>
+    <div class="e">
+    <div class="e-1">Сайт психолога Веры Антоновой</div>
+    <div class="e-2">Сайт магазина детской одежды</div>
+    <div class="e-3">Сайт магазина Рыболов</div>
+    </div>
+</section>
+</body>
+</html>
